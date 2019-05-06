@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 from flask import send_from_directory
 from flask import Flask
 from flask_uploads import IMAGES, UploadSet
+from database import Database
 
 
 
@@ -17,45 +18,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'your_folder'
 photos = UploadSet('photos', IMAGES)
 
-
-
-
-class Database:
-    def __init__(self, host, dbuser, password, DB, conn, password_hash, nick):
-        self.host = host
-        self. dbuser = dbuser
-        self.password = password
-        self.DB = DB
-        self.conn = conn
-        self.nick = nick
-
-    @staticmethod
-    def connection(SQL, data):
-        host = 'localhost'
-        dbuser = 'kim'
-        password = 'kimmy'
-        DB = 'kimdb'
-        conn = psycopg2.connect(host=host,
-                                     user=dbuser, password=password, dbname=DB)
-        cursor = conn.cursor()
-        cursor.execute(SQL, data)
-        rows = cursor.fetchall()
-        conn.close()
-        return rows
-
-    @staticmethod
-    def insertion(SQL, data):
-        host = 'localhost'
-        dbuser = 'kim'
-        password = 'kimmy'
-        DB = 'kimdb'
-        conn = psycopg2.connect(host=host,
-                                user=dbuser, password=password, dbname=DB)
-        cursor = conn.cursor()
-        cursor.execute(SQL, data)
-        conn.commit()
-        conn.close()
-        return print('OK')
+        
 
 
 @app.route('/location/api/v1.0/devices', methods=['GET', 'POST'])
