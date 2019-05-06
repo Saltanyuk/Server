@@ -14,7 +14,7 @@ from flask_uploads import IMAGES, UploadSet
 
 # Конфигурация запускаемого приложения Flask
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = '/Users/kim_folder/Documents/Development/Rest_second/flask/folder'
+app.config['UPLOAD_FOLDER'] = 'your_folder'
 photos = UploadSet('photos', IMAGES)
 
 
